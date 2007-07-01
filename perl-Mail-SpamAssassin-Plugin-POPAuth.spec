@@ -1,13 +1,12 @@
 Summary:	The POPAuth plugin for SpamAssassin
 Name:		perl-Mail-SpamAssassin-Plugin-POPAuth
 Version:	0
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	Apache License
 Group:		Development/Perl
 URL:		http://people.apache.org/~dos/sa-plugins/3.1/
-Source0:	http://people.apache.org/~dos/sa-plugins/3.1/POPAuth.cf.bz2
-Source1:	http://people.apache.org/~dos/sa-plugins/3.1/POPAuth.pm.bz2
-Patch0:		POPAuth-fix-module-path.patch
+Source0:	http://people.apache.org/~dos/sa-plugins/3.1/POPAuth.cf
+Source1:	http://people.apache.org/~dos/sa-plugins/3.1/POPAuth.pm
 Requires(pre): rpm-helper
 Requires(postun): rpm-helper
 Requires(pre):  spamassassin-spamd >= 3.1.1
@@ -26,10 +25,11 @@ SpamAssassin's trusted_networks configuration.
 
 %setup -q -T -c -n %{name}-%{version}
 
-bzcat %{SOURCE0} > POPAuth.cf
-bzcat %{SOURCE1} > POPAuth.pm
+cp %{SOURCE0} POPAuth.cf
+cp %{SOURCE1} POPAuth.pm
 
-%patch0
+# fix path
+perl -pi -e "s|/etc/mail/spamassassin/POPAuth\.pm|%{perl_vendorlib}/Mail/SpamAssassin/Plugin/POPAuth\.pm|g" POPAuth.cf
 
 %build
 
@@ -66,5 +66,3 @@ fi
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/mail/spamassassin/POPAuth.cf
 %{perl_vendorlib}/Mail/SpamAssassin/Plugin/POPAuth.pm
 %{_mandir}/man3/Mail::SpamAssassin::Plugin::POPAuth.3pm*
-
-
