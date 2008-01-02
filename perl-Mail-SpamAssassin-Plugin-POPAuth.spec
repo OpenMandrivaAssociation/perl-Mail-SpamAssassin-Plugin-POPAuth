@@ -13,6 +13,7 @@ Requires(pre):  spamassassin-spamd >= 3.1.1
 Requires:	spamassassin-spamd >= 3.1.1
 BuildRequires:	perl-doc
 BuildArch:	noarch
+Buildroot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 Utilizes an access.db style hash file to extend the SpamAssassin
