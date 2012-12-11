@@ -1,0 +1,4 @@
+loadplugin Mail::SpamAssassin::Plugin::POPAuth /etc/mail/spamassassin/POPAuth.pm
+
+popauth_hash_file /etc/mail/access.db
+
