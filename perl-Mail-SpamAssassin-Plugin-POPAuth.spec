@@ -1,7 +1,7 @@
 Summary:	The POPAuth plugin for SpamAssassin
 Name:		perl-Mail-SpamAssassin-Plugin-POPAuth
 Version:	0
-Release:	%mkrel 7
+Release:	8
 License:	Apache License
 Group:		Development/Perl
 URL:		http://people.apache.org/~dos/sa-plugins/3.1/
